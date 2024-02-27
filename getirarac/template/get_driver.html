@@ -1,0 +1,84 @@
+<!-- your_template.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver List</title>
+</head>
+<body>
+
+<form method="get">
+    <label for="startDate">Start Date:</label>
+    <input type="date" name="startDate" id="startDate" value="{{ params.startDate }}">
+
+    <label for="endDate">End Date:</label>
+    <input type="date" name="endDate" id="endDate" value="{{ params.endDate }}">
+
+    <label for="minScore">Min Score:</label>
+    <input type="number" name="minScore" id="minScore" value="{{ params.minScore }}">
+
+    <label for="maxScore">Max Score:</label>
+    <input type="number" name="maxScore" id="maxScore" value="{{ params.maxScore }}">
+
+    <label for="limit">Limit:</label>
+    <input type="text" name="limit" id="limit" value="{{ params.limit }}">
+
+    <label for="offset">Offset:</label>
+    <input type="text" name="offset" id="offset" value="{{ params.offset }}">
+
+
+    <button type="submit">Apply Filters</button>
+</form>
+<h1>Data from FastAPI</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>email</th>
+            <th>first_name</th>
+            <th>last_name</th>
+            <th>driving_score</th>
+            <th>age</th>
+            <th>created_at</th>
+            <!-- Add other columns as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data.records %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.first_name }}</td>
+                <td>{{ item.last_name }}</td>
+                <td>{{ item.driving_score }}</td>
+                <td>{{ item.age }}</td>
+                <td>{{ item.created_at }}</td>
+                <!-- Add other columns as needed -->
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if data.has_previous %}
+            <a href="?{{ params.urlencode }}&page=1">&laquo; first</a>
+            <a href="?{{ params.urlencode }}&page={{ data.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ data.page }} of {{ data.pages }}.
+        </span>
+
+        {% if data.has_next %}
+            <a href="?{{ params.urlencode }}&page={{ data.next_page_number }}">next</a>
+            <a href="?{{ params.urlencode }}&page={{ data.pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</body>
+</html>

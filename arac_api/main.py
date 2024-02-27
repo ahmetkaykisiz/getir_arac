@@ -1,20 +1,20 @@
 from fastapi import HTTPException
 from fastapi.logger import logger
 from sqlalchemy.orm import Session
-from utils.database import SessionLocal, engine
-from utils import util_models
+from arac_api.utils.database import SessionLocal, engine
+from arac_api.utils import util_models
 from pydantic import ValidationError
 
 from fastapi import Depends, FastAPI
 
-from utils.pagination import paginate
-from utils.schemas import DriverRequest
+from arac_api.utils.pagination import paginate
+from arac_api.utils.schemas import DriverRequest
+from arac_api.utils import models
 
 app = FastAPI()
 
-
-from utils import models
 models.Base.metadata.create_all(bind=engine)
+
 
 # Dependency to get the database session
 def get_db():
@@ -32,7 +32,6 @@ async def read_items(
 ):
     try:
         items_query = util_models.get_items(db, request)
-        print(request)
         return paginate(items_query, request.offset, request.limit)
 
     except ValidationError as exc:
@@ -42,4 +41,3 @@ async def read_items(
         logger.exception(f"['get - /driver_list'] Error: {str(e)}")
 
         raise HTTPException(status_code=500, detail=str(e))
-

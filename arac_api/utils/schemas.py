@@ -1,8 +1,7 @@
 from datetime import date
-from types import NoneType
 
-from pydantic import BaseModel, Field, BaseConfig, constr
-from typing import Optional, TypeVar, List, Any
+from pydantic import BaseModel, Field
+from typing import Optional, List, Any
 
 
 class DriverRequest(BaseModel):
