@@ -1,6 +1,7 @@
 # Getir Drive Case
 ### run fastapi
 ```
+cd .\arac_api\
 uvicorn main:app --reload --port 8001
 ```
 
