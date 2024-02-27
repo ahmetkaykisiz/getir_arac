@@ -1,7 +1,11 @@
-### fastapi kaldırmak için 
+# Getir Drive Case
+### run fastapi
+```
 uvicorn main:app --reload --port 8001
+```
 
-### django kaldırmak için
+### run django app
+```
 cd .\getirarac\
 python manage.py runserver
-
+```
