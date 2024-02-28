@@ -15,3 +15,9 @@ uvicorn main:app --reload --port 8001
 cd .\getirarac\
 python manage.py runserver
 ```
+
+### run endpoint test
+```
+cd .\arac_api\
+pytest test_file.py   
+```
