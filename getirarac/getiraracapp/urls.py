@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import GetUserList
+from .views import GetDriverList
 
 urlpatterns = [
-    path('getir_arac/get_user_list/', GetUserList.as_view(), name='item-list'),
+    path('getir_arac/get_user_list/', GetDriverList.as_view(), name='item-list'),
 ]

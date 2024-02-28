@@ -6,9 +6,9 @@ from django.views import View
 import requests
 
 
-class GetUserList(View):
+class GetDriverList(View):
     template_name = 'get_driver.html'
-    get_driver_list_url = 'http://127.0.0.1:8001/driver_list/'
+    get_driver_list_url = 'http://127.0.0.1:8001/arac_api/driver_list/'
 
     def get(self, request, *args, **kwargs):
         try:
