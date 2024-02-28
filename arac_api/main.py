@@ -25,7 +25,7 @@ def get_db():
         db.close()
 
 
-@app.get("arac_api/driver_list/")
+@app.get("/arac_api/driver_list/")
 async def read_items(
         request: DriverRequest,
         db: Session = Depends(get_db),
