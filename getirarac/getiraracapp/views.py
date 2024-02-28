@@ -22,7 +22,7 @@ class GetDriverList(View):
                 "limit": request.GET.get('limit', ''),
                 "offset": request.GET.get('offset', '')
             }
-            #
+
             payload = {key: value for key, value in data.items() if value is not None and value != ""}
 
             headers = {
@@ -35,9 +35,8 @@ class GetDriverList(View):
                 items = response.json()
                 return render(request, self.template_name, {'data': items})
             else:
-                logging.error(f"['GetUserList']. HTTP hata kodu: {response.status_code}")
-
+                logging.error(f"['GetUserList']. Error Code: {response.status_code}")
+                return render(request, self.template_name, {'data': response.json()})
         except requests.exceptions.RequestException as e:
             logging.error(f"['GetUserList'] has exception: {e}")
-
         return render(request, self.template_name, {'items': []})
