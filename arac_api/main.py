@@ -1,8 +1,8 @@
 from fastapi import HTTPException
 from fastapi.logger import logger
 from sqlalchemy.orm import Session
-from arac_api.utils.database import SessionLocal, engine
-from arac_api.utils import util_models
+from utils.database import SessionLocal, engine
+from utils import util_models
 from pydantic import ValidationError
 
 from fastapi import Depends, FastAPI
