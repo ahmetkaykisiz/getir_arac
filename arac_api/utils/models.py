@@ -1,8 +1,9 @@
 
 from sqlalchemy import Float
-from arac_api.utils.database import Base
 from datetime import datetime
 from sqlalchemy import Column, Integer, String, Date
+
+from .database import Base
 
 
 class Driver(Base):
