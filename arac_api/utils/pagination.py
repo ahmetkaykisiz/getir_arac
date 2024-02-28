@@ -11,9 +11,11 @@ class PyginationError(Exception):
 class PaginationError(Exception):
     pass
 
+
 class Page:
     def __init__(self, items: List[Any], page: int, size: int, total: int, offset, limit) -> None:
-
+        self.code = 0
+        self.msg = 'success'
         self.pages = int(math.ceil(total / float(size)))
         if page > 0 and page > self.pages - 1:
             raise PaginationError("Page is greater than the total number of pages in the query.")
@@ -54,7 +56,7 @@ class Page:
         return repr_string
 
 
-def paginate(query: Query, page: int, size: int, sort: str =None, offset:int = 0) -> Page:
+def paginate(query: Query, page: int, size: int, sort: str = None, offset: int = 0) -> Page:
     if page < 0:
         raise AttributeError("page needs to be >= 0")
     if size <= 0:

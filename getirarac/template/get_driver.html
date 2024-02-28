@@ -32,6 +32,8 @@
 
     <button type="submit">Apply Filters</button>
 </form>
+
+{% if data.records %}
 <h1>Data from FastAPI</h1>
 
 <table border="1">
@@ -62,7 +64,11 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<p>{{ data.detail.0.msg }}</p>
+{% endif %}
 
+{% if data.records %}
 <div class="pagination">
     <span class="step-links">
         {% if data.has_previous %}
@@ -75,10 +81,11 @@
         </span>
 
         {% if data.has_next %}
-            <a href="?{{ params.urlencode }}&page={{ data.next_page_number }}">next</a>
+            <a href="?{{ params.urlencode }}&page={{ data.next_page }}">next</a>
             <a href="?{{ params.urlencode }}&page={{ data.pages }}">last &raquo;</a>
         {% endif %}
     </span>
 </div>
+{% endif %}
 </body>
 </html>

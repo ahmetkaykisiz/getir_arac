@@ -39,5 +39,4 @@ async def read_items(
         raise HTTPException(status_code=400, detail=str(exc))
     except Exception as e:
         logger.exception(f"['get - /driver_list'] Error: {str(e)}")
-
         raise HTTPException(status_code=500, detail=str(e))
